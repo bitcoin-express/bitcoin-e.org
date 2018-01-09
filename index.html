@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bitcoin-express | Bitcoin wallet for fast payments</title>
+    <meta name="description" content="Page-specific description">
+    <meta name="keywords" content="Page-specific keywords">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+    <link rel="stylesheet" href="static/css/screen.min.css">
+    <script type="text/javascript" src="wallet/js/vendor/jQuery-v3.1.1.js"></script>
+    <script type="text/javascript" src="wallet/js/vendor/BitcoinExpress.min.js"></script>
+  </head>
+  <body>
+    <!-- $Page header-->
+    <header class="page-header">
+      <div class="page-header__inner">
+        <input class="page-header__nav-check" id="nav-check" type="checkbox">
+        <label class="page-header__nav-icon" for="nav-check">
+          <i class="fa fa-bars"></i>
+        </label>
+        <h1 class="page-header__logo">
+          <img src="static/images/BitcoinExpress.svg" />
+        </h1>
+        <div class="page-header__nav">
+          <!-- $Page navigation-->
+          <nav class="page-nav">
+            <a class="page-nav__link is-highlighted" href="#">Home</a>
+            <a class="page-nav__link" href="pages/getting_started.html">Getting started</a>
+            <a class="page-nav__link" href="#">Demo</a>
+            <a class="page-nav__link" href="#">Contacts</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- $Promo-->
+    <section class="promo">
+      <div class="promo__slider">
+        <!-- $Slider-->
+        <div class="slider">
+          <input class="slider__radio" id="button-one" type="radio" name="controls" checked="checked">
+          <label class="slider__control" for="button-one"></label>
+          <input class="slider__radio" id="button-two" type="radio" name="controls">
+          <label class="slider__control" for="button-two"></label>
+          <input class="slider__radio" id="button-three" type="radio" name="controls">
+          <label class="slider__control" for="button-three"></label>
+          <ul class="slider__items">
+            <li class="slider__item" id="slide-one">
+              <figure class="slider__item-image">
+                <img src="static/images/iphone.png" alt="Bitcoin-express">
+                <figcaption>Save money and time with the Bitcoin-express Wallet</figcaption>
+              </figure>
+              <div class="slider__item-info">
+                <h1 class="slider__item-title">Save money and time with the Bitcoin-express Wallet</h1>
+                <h2 class="slider__item-text">Transactions complete in seconds</h2>
+                <h2 class="slider__item-text">Transfer Bitcoin to friends with zero cost</h2>
+                <div id="open_wallet1" class="slider__item-link">Open your wallet</div>
+              </div>
+            </li>
+            <li class="slider__item" id="slide-two">
+              <figure class="slider__item-image"><img src="static/images/monitor.png" alt="Some picture">
+                <figcaption>Pay only a few cents in fees</figcaption>
+              </figure>
+              <div class="slider__item-info">
+                <h1 class="slider__item-title">Pay only a few cents in fees</h1>
+                <h2 class="slider__item-text">Buyer pays a few cents and</h2>
+                <h2 class="slider__item-text">seller pays only 0.5%</h2>
+                <div id="open_wallet2" class="slider__item-link">Open your wallet</div>
+              </div>
+            </li>
+            <li class="slider__item" id="slide-three">
+              <figure class="slider__item-image"><img src="static/images/retracted.png" alt="Some picture">
+                <figcaption>Improve your Bitcoin payment experience</figcaption>
+              </figure>
+              <div class="slider__item-info">
+                <h1 class="slider__item-title">Manage funds on your phone and computer</h1>
+                <h2 class="slider__item-text">Use any existing Bitcoin wallet</h2>
+                <h2 class="slider__item-text">to transfer funds to Bitcoin-express</h2>
+                <div id="open_wallet3" class="slider__item-link">Open your wallet</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- $Services-->
+    <section class="services">
+      <div class="services__inner">
+        <div class="services__item services__item_info">
+          <div class="service_icon">
+            <i class="fab fa-bitcoin fa-6x"></i>
+          </div>
+          <h3 class="service__title">Pay only a few cents in fees</h3>
+          <p class="service__text">Buyer pays a few cents and seller pays only 0.5%</p>
+        </div>
+        <div class="services__item services__item_proposal">
+          <div class="service_icon">
+            <i class="far fa-clock fa-6x"></i>
+          </div>
+          <h3 class="service__title">Save money and time</h3>
+          <p class="service__text">Transactions complete in seconds.<br>Transfer to friends with zero cost</p>
+        </div>
+        <div class="services__item services__item_production">
+          <div class="service_icon">
+            <span class="fa-stack fa-3x">
+              <i class="fas fa-download fa-stack-1x"></i>
+              <i class="fas fa-ban fa-stack-2x" style="color: red"></i>
+            </span>
+          </div>
+          <h3 class="service__title">No sign-up, No download</h3>
+          <p class="service__text">Use any browser instantly.<br>Hold your own funds</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- $Product-->
+    <!-- section class="product">
+      <div class="product__inner">
+        <h1 class="product__title">Click the Shopping cart to test payment</h1>
+        <a class="product__card" href="javascript:startPayment(0.0000123)">
+          Click to test payment
+        </a>
+        <div class="product__info">
+          <h2 class="product__slogan">Some Bullet text here</h2>
+          <p class="product__text">Lorem Ipsum is simply dummy text of the printing and typesetting<br>Lorem Ipsum has been the industry&apos;s standard dummy text ever<br>When an unknown printer took a galley of type and scrambled<br>It to make a type specimen book. It has survived not only five centuries<br>But also the leap into electronic typesetting<br>Remaining essentially unchanged. It was popularised<br>The release of Letraset sheets containing Lorem Ipsum passages</p>
+        </div>
+      </div>
+    </section-->
+
+    <!-- $Page footer-->
+    <footer class="page-footer">
+      <div class="page-footer__inner">
+        <p class="page-footer__copyright">
+          &#169; Bitcoin-express
+        </p>
+        <p class="page-footer__contribute">
+        <b>Would you like to help with Bitcoin-express?</b></br > 
+          Check out our <a href="https://github.com/bitcoin-express" target="_blank">
+            <i class="fab fa-github"></i> Github.
+          </a>
+          Or go an take a look to our <a href="https://github.com/bitcoin-express/bitcoin-express-wallet/issues" target="_blank">
+            current issues
+          </a>.
+        </p>
+      </div>
+    </footer>
+
+<script  defer="defer" type="text/javascript">
+
+function showWallet (fullSize) {
+  // window.fullSize = fullSize;
+  BitcoinExpress.Wallet.Open({
+    fullScreen: true
+  });
+};
+
+var req = {
+  fullScreen: false,
+  PaymentRequest: {
+    payment_details_version: "1",
+    PaymentDetails: {
+      // payment_url: "https://be.ap.rmp.net/Bitcoin-express/Tests/merchant-payment-mock.jsp",
+      payment_url: "https://be.ap.rmp.net/Bitcoin-express/v1/issuer/mockPayment",
+      currency: "XBT",
+      issuers: ["*.rmp.net","coinbase.com"],
+      amount: 0.0000123,
+      merchant_data: "9992645143674",
+      memo: "The art of asking",
+      email: {
+        contact: "sales@merchant.com",
+        receipt: true,
+        refund: false
+      },
+      time: "2017-06-01T00:00:00Z",
+      expires: "2017-12-31T00:00:00Z"
+    }
+  }
+}
+
+function startPayment (price) {
+  var copyReq = Object.assign({}, req);
+  if (price) {
+    copyReq.PaymentRequest.PaymentDetails.amount = price;
+  }
+  BitcoinExpress.Wallet.Open(copyReq).then(function(container) {
+    //an object containing the PaymentAck
+    if("PaymentAck" in container) {
+      let PaymentAck = container.PaymentAck;
+      if("status" in PaymentAck) {
+        console.log("Status is "+PaymentAck.status);
+        if(PaymentAck.status == "ok" && "return_url" in PaymentAck) {
+          return window.location.replace(PaymentAck.return_url);
+        }
+      }
+    }
+    // alert("Unexpected response Payment: "+JSON.stringify(container));
+  }).catch(function(err) {
+    console.log("PaymentRequest returned "+err);
+    /*if(err!="closed") {
+      alert("Payment failed because "+err);
+    }*/
+  });
+};
+
+
+document.getElementById("open_wallet1").addEventListener('click', showWallet);
+document.getElementById("open_wallet2").addEventListener('click', showWallet);
+document.getElementById("open_wallet3").addEventListener('click', showWallet);
+</script>
+
+  </body>
+</html>

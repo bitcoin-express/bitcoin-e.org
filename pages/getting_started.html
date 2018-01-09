@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bitcoin-express | Getting started</title>
+    <meta name="description" content="Page-specific description">
+    <meta name="keywords" content="Page-specific keywords">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+    <link rel="stylesheet" href="../static/css/screen.min.css">
+    <script type="text/javascript" src="../wallet/js/vendor/jQuery-v3.1.1.js"></script>
+    <script type="text/javascript" src="../wallet/js/vendor/BitcoinExpress.js"></script>
+  </head>
+  <body>
+    <!-- $Page header-->
+    <header class="page-header">
+      <div class="page-header__inner">
+        <input class="page-header__nav-check" id="nav-check" type="checkbox">
+        <label class="page-header__nav-icon" for="nav-check">
+          <i class="fa fa-bars"></i>
+        </label>
+        <a class="page-header__logo" href="../index.html">
+          <img src="../static/images/BitcoinExpress.svg" />
+        </a>
+        <div class="page-header__nav">
+          <!-- $Page navigation-->
+          <nav class="page-nav">
+            <a class="page-nav__link" href="../index.html">Home</a>
+            <a class="page-nav__link is-highlighted" href="#">Getting started</a>
+            <a class="page-nav__link" href="#">Demo</a>
+            <a class="page-nav__link" href="#">Contacts</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- $Product-->
+    <section class="product">
+      <div class="product__inner">
+        <h1 class="product__title"></h1>
+        <!-- a class="product__card" href="javascript:startPayment(0.0000123)">
+          Click to test payment
+        </a -->
+
+        <div class="product__info">
+          <h2 class="product__slogan">Are you a merchant? Want to sell your items in Bitcoin?</h2>
+          <p class="product__text">
+            In order to be able to integrate Bitcoin-express wallet in your website it is required to include the following script - you can also directly download the library from <a href="https://github.com/bitcoin-express/BitcoinExpress/releases/download/v1.0/BitcoinExpress.min.js" >here</a>:
+          </p>
+          <p class="product__text">
+<pre><code class="javascript">
+  &lt;script src="https://bitcoin-e.org/js/vendor/BitcoinExpress.js"&gt;&lt;/script&gt;</i>
+
+</code></pre>
+          </p>
+          <p class="product__text">
+            Bitcoin-express provide developers with tools that allow users to open a Wallet directly from the website. For those new users that attempt to open it for the first time, they will first have to select their preferred Wallet from a list of possible ones.<br />
+            Once the display selected, it display the app as an overlay directly on the site's pages.
+          </p>
+          <p class="product__text">
+            Merchants will place the previous HTML code, which contains everything needed, within the &lt;head&gt; of each template or page that the merchant website want to use Bitcoin-express on. Next, merchants will have to find the right way to display the items they want to sell and link the payments to the library.
+          </p>
+
+          <br />
+          <h2 class="product__slogan">How to link payments to Bitcoin-express?</h2>
+          <p class="product__text">
+            Once the BitcoinExpress.js library is included on a sales page, the merchant may trigger a payment request simply by calling 'BitcoinExpress.PaymentRequest' similar to the following:
+          </p>
+          <p class="product__text">
+<pre><code class="javascript">
+  BitcoinExpress.PaymentRequest(payment_details_object)
+  .then(function(paymentAck_container) {
+    window.location.replace(paymentAck_container.PaymentAck.return_url);
+  })
+  .catch(function(err) {
+    alert("Payment failed because "+err);
+  });
+
+</code></pre>
+          </p>
+          <p class="product__text">
+          The parameter payment_details_object is a PaymentDetails JSON object (example below), which is more fully described in the Bitcoin-express Payment reference doc. A successful payment will result in <i>.then()</i> being executed whereas <i>.catch()</i> will be called if the payment is unsuccessful.
+          </p>
+          <p class="product__text">
+<pre><code class="javascript">
+  {
+    "PaymentRequest": {
+      "payment_details_version": "1",
+      "PaymentDetails": {
+        "payment_url": "https://merchant.com/<salesReference>",
+        "amount": "0.00123",
+        "merchant_data": "<of use to the merchant>",
+        "issuers": ["(bitcoin-e.org)"],
+        "memo": "Human-readable description of request to the customer",
+        //optional
+        "email": {
+          "contact":"sales@merchant.com",
+          "receipt":true,
+          "refund":false
+        },
+        "currency": "XBT",
+        "time": "2017-05-15T10:50:23.167Z",
+        "expires": "2017-05-15T11:50:23.167Z",
+      }
+    }
+  }
+
+</code></pre>
+          </p>
+          <p class="product__text">
+            Once the payment request has been initiated, the BitcoinExpress library starts the Wallet loader which allows the buyer to select their Wallet of choice or automatically starts their Wallet if a cookie has previously been set. The selected Wallet is passed the PaymentRequest and immediately displays the payment details (including price and short description). If the buyer clicks “Confirm”, appropriate coins are selected and sent to the merchant in a 'Payment' object.
+          </p>
+
+          <br />
+          <h2 class="product__slogan">Final steps</h2>
+          <p class="product__text">
+            The merchant must arrange to receive the Payment coins at the 'payment_url' and to send those coins to their preferred Issuer for verification. Once verified, the newly issued coins will be stored by the merchant and the product may be released to the buyer (in a PaymentAck), in the knowledge that payment was correct and cannot be reversed.<br />
+          </p>
+          <p class="product__text">
+            <img src="../static/images/payment-seq.png" style="width: 100%; margin: 20px 0;" />
+          </p>
+          <p class="product__text">
+            The merchant is also able to supply a contact email in case the customer needs to make contact about the sale, which is recorded in the Wallet for later possible use by the buyer.
+          </p>
+          <p class="product__text">
+            The merchant may also indicate if they are willing to supply a sales receipt and if they are willing (in principal), to refund the buyer should it be appropriate.
+          </p>
+          <p class="product__text">
+            If either option is offered and if the buyer has entered their email address into the Wallet settings, and if the buyer permits it, the buyer's email will be passed to the seller for the purpose of receiving a receipt or a refund.
+          </p>
+          <p class="product__text">
+            The method of product delivery may simply be a link or an email, or by some creative mechanism directly on the page being viewed.
+          </p>
+        </div>
+
+        <!-- div class="product__info">
+          <h2 class="product__slogan">Open a wallet for users</h2>
+          <p class="product__text">
+          </p>
+        </div -->
+
+      </div>
+    </section>
+
+    <!-- $Page footer-->
+    <footer class="page-footer">
+      <div class="page-footer__inner">
+        <p class="page-footer__copyright">
+          &#169; Bitcoin-express
+        </p>
+        <p class="page-footer__contribute">
+        <b>Would you like to help with Bitcoin-express?</b></br > 
+          Check out our <a href="https://github.com/bitcoin-express" target="_blank">
+            <i class="fab fa-github"></i> Github.
+          </a>
+          Or go an take a look to our <a href="https://github.com/bitcoin-express/bitcoin-express-wallet/issues" target="_blank">
+            current issues
+          </a>.
+        </p>
+      </div>
+    </footer>
+
+  </body>
+</html>
