@@ -38,6 +38,11 @@
         Mock payment 0.00002 XBT
       </a>
     </li>
+    <li>
+      <a id="mock_payment_5" href="#">
+        Mock payment 1.00 XBT
+      </a>
+    </li>
   </ul>
 
   <script defer="defer" type="text/javascript">
@@ -104,6 +109,9 @@
     });
     document.getElementById("mock_payment_4").addEventListener('click', function () {
       startPayment(0.00002);
+    });
+    document.getElementById("mock_payment_5").addEventListener('click', function () {
+      startPayment(1);
     });
   </script>
 
