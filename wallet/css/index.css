@@ -103,31 +103,6 @@ body {
   padding-top: 0vh !important;
 }
 
-.full-dialog > div {
-  height: 100%;
-}
-
-.full-dialog > div > div {
-  width: 100% !important;
-  height: 100% !important;
-  transform: translate(0px, 0px) !important;
-}
-
-.full-dialog > div > div > div {
-  height: 100% !important;
-  background-color: #d8dff7 !important;
-}
-
-.full-dialog > div > div > div > div:nth-child(2) {
-  max-height: calc(100% - 142px) !important;
-  min-height: 250px;
-}
-
-.full-dialog > div > div > div > div:nth-child(3) {
-  position: absolute;
-  bottom: 0;
-}
-
 .appbar.minimized {
   padding: 0 0 0 5px !important;
 }
@@ -158,6 +133,35 @@ body {
     margin: 0;
     padding: 0;
     display: none;
+  }
+
+  .dialog > div {
+    height: 100%;
+  }
+
+  .dialog > div > div {
+    width: 100% !important;
+    height: 100% !important;
+    transform: translate(0px, 0px) !important;
+  }
+
+  .dialog > div > div > div {
+    height: 100% !important;
+    background-color: #d8dff7 !important;
+  }
+
+  .dialog > div > div > div > div:nth-child(2) {
+    max-height: calc(100% - 142px) !important;
+    min-height: 250px;
+  }
+
+  .dialog > div > div > div > div:nth-child(3) {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .dialog > div > div > div > div:nth-child(2) {
+    padding: 8px !important;
   }
 }
 
