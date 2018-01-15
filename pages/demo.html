@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bitcoin-express | Getting started</title>
+    <meta name="description" content="Page-specific description">
+    <meta name="keywords" content="Page-specific keywords">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+    <link rel="stylesheet" href="../static/css/screen.min.css">
+    <script type="text/javascript" src="../wallet/js/vendor/jQuery-v3.1.1.js"></script>
+    <script type="text/javascript" src="../wallet/js/vendor/BitcoinExpress.min.js"></script>
+  </head>
+  <body>
+    <!-- $Page header-->
+    <header class="page-header">
+      <div class="page-header__inner">
+        <input class="page-header__nav-check" id="nav-check" type="checkbox">
+        <label class="page-header__nav-icon" for="nav-check">
+          <i class="fa fa-bars"></i>
+        </label>
+        <a class="page-header__logo" href="../index.html">
+          <img src="../static/images/BitcoinExpress.svg" />
+        </a>
+        <div class="page-header__nav">
+          <!-- $Page navigation-->
+          <nav class="page-nav">
+            <a class="page-nav__link" href="../index.html">
+              Home
+            </a>
+            <a class="page-nav__link" href="./getting_started.html">
+              Getting started
+            </a>
+            <a class="page-nav__link is-highlighted" href="#">
+              Demo
+            </a>
+            <a class="page-nav__link" href="#">
+              Contacts
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- $Product-->
+    <section class="product">
+      <div class="product__inner">
+        <h1 class="product__title"></h1>
+        <!-- a class="product__card" href="javascript:startPayment(0.0000123)">
+          Click to test payment
+        </a -->
+
+        <div class="product__info">
+          <h3 style="text-align: center;">
+            Open full-screen wallet version
+          </h3>
+          <p class="product__text">
+            <div id="open_wallet_button" class="slider__item-link">
+              Open wallet full size
+            </div>
+            <br />
+          </p>
+          <p class="product__text">
+<pre><code class="javascript">
+document.getElementById("open_wallet_button").addEventListener('click', function () {
+  BitcoinExpress.Wallet.Open({
+    fullScreen: true
+  });
+});
+
+</code></pre>
+          </p>
+          <br />
+        </div>
+
+        <div class="product__info">
+          <h3 style="text-align: center;">
+            Open retracted wallet
+          </h3>
+          <p class="product__text">
+            <div id="open_wallet_retracted_button" class="slider__item-link">
+              Open retracted wallet
+            </div>
+            <br />
+          </p>
+          <p class="product__text">
+<pre><code class="javascript">
+document.getElementById("open_wallet_retracted_button").addEventListener('click', function () {
+  BitcoinExpress.Wallet.Open({
+    fullScreen: false
+  });
+});
+
+</code></pre>
+          </p>
+          <br />
+        </div>
+
+        <div class="product__info">
+          <h3 style="text-align: center;">
+            Mock payment 0.0000095 XBT
+          </h3>
+          <p class="product__text">
+            <div id="mock_payment_button" class="slider__item-link">
+              Mock payment 0.0000095 XBT
+            </div>
+            <br />
+          </p>
+          <p class="product__text">
+<pre><code class="javascript">
+var req = {
+  fullScreen: false,
+  PaymentRequest: {
+    payment_details_version: "1",
+    PaymentDetails: {
+      amount: 0.0000095,
+      payment_url: "https://be.ap.rmp.net/Bitcoin-express/v1/issuer/mockPayment",
+      currency: "XBT",
+      issuers: ["*.rmp.net","coinbase.com"],
+      merchant_data: "9992645143674",
+      memo: "The art of asking",
+      email: {
+        contact: "sales@merchant.com",
+        receipt: true,
+        refund: false
+      },
+      time: "2017-06-01T00:00:00Z",
+      expires: "2017-12-31T00:00:00Z"
+    }
+  }
+};
+
+document.getElementById("mock_payment_button").addEventListener('click', function () {
+  BitcoinExpress.Wallet.Open(req).then(function(container) {
+    // an object containing the PaymentAck
+    if ("PaymentAck" in container) {
+      let PaymentAck = container.PaymentAck;
+      if ("status" in PaymentAck) {
+        console.log("Status is "+PaymentAck.status);
+        if (PaymentAck.status == "ok" && "return_url" in PaymentAck) {
+          return window.location.replace(PaymentAck.return_url);
+        }
+      }
+    }
+  }).catch(function(err) {
+    console.log("PaymentRequest returned ", err);
+  });
+});
+
+</code></pre>
+          </p>
+          <br />
+        </div>
+
+
+
+<script defer="defer" type="text/javascript">
+document.getElementById("open_wallet_button").addEventListener('click', function () {
+  BitcoinExpress.Wallet.Open({
+    fullScreen: true
+  });
+});
+
+document.getElementById("open_wallet_retracted_button").addEventListener('click', function () {
+  BitcoinExpress.Wallet.Open({
+    fullScreen: false
+  });
+});
+
+var req = {
+  fullScreen: false,
+  PaymentRequest: {
+    payment_details_version: "1",
+    PaymentDetails: {
+      amount: 0.0000095,
+      payment_url: "https://be.ap.rmp.net/Bitcoin-express/v1/issuer/mockPayment",
+      currency: "XBT",
+      issuers: ["*.rmp.net","coinbase.com"],
+      merchant_data: "9992645143674",
+      memo: "The art of asking",
+      email: {
+        contact: "sales@merchant.com",
+        receipt: true,
+        refund: false
+      },
+      time: "2017-06-01T00:00:00Z",
+      expires: "2017-12-31T00:00:00Z"
+    }
+  }
+};
+
+document.getElementById("mock_payment_button").addEventListener('click', function () {
+  BitcoinExpress.Wallet.Open(req).then(function(container) {
+    // an object containing the PaymentAck
+    if ("PaymentAck" in container) {
+      let PaymentAck = container.PaymentAck;
+      if ("status" in PaymentAck) {
+        console.log("Status is "+PaymentAck.status);
+        if (PaymentAck.status == "ok" && "return_url" in PaymentAck) {
+          return window.location.replace(PaymentAck.return_url);
+        }
+      }
+    }
+  }).catch(function(err) {
+    console.log("PaymentRequest returned ", err);
+  });
+});
+</script>
+
+
+
+    </section>
+
+    <!-- $Page footer-->
+    <footer class="page-footer">
+      <div class="page-footer__inner">
+        <p class="page-footer__copyright">
+          &#169; Bitcoin-express
+        </p>
+        <p class="page-footer__contribute">
+        <b>Would you like to help with Bitcoin-express?</b></br > 
+          Check out our <a href="https://github.com/bitcoin-express" target="_blank">
+            <i class="fab fa-github"></i> Github.
+          </a>
+          Or go an take a look to our <a href="https://github.com/bitcoin-express/bitcoin-express-wallet/issues" target="_blank">
+            current issues
+          </a>.
+        </p>
+      </div>
+    </footer>
+
+  </body>
+</html>
