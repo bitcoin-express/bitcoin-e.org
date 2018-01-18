@@ -345,7 +345,7 @@ body {
 .product__info {
   float: left;
   width: 90%;
-  margin: 15px 0 0 5%;
+  margin: 35px 0 0 5%;
 }
 
 .product__slogan {
@@ -832,4 +832,13 @@ body {
 
 pre {
   overflow-x: scroll;
+}
+
+ul {
+  margin: 20px 10px;
+  color: #444444;
+  font-size: 90%;
+}
+li {
+  margin-left: 20px;
 }

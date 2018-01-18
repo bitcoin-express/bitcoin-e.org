@@ -61,11 +61,17 @@
 
         <div class="product__info">
           <h3 style="text-align: center;">
-            Open full-screen wallet version
+            Open the wallet
           </h3>
+          <hr />
           <p class="product__text">
+            Opening the wallet is as simple as calling the function <i>Open</i> from BitcoinExpress wallet.<br/>
+            By passing a JSON object as a parameter to the function you can decide if you want to open the wallet in full-size mode or in a retracted mode (<i>fullSize</i> true or false).
             <div id="open_wallet_button" class="slider__item-link">
               Open wallet full size
+            </div>
+            <div id="open_wallet_retracted_button" class="slider__item-link">
+              Open retracted wallet
             </div>
             <br />
           </p>
@@ -84,75 +90,51 @@ document.getElementById("open_wallet_button").addEventListener('click', function
 
         <div class="product__info">
           <h3 style="text-align: center;">
-            Open retracted wallet
+            Payment 0.0000095 XBT
           </h3>
+          <hr />
           <p class="product__text">
-            <div id="open_wallet_retracted_button" class="slider__item-link">
-              Open retracted wallet
-            </div>
-            <br />
+            In order to proceed with payments, merchants will have to call the function <i>PaymentRequest</i> from BitcoinExpress library passing as a parameter a JSON object with the payment details.<br/>
+            Principally, the payment details object will have to include the following keys:<br/>
+            <ul>
+              <li><b>amount</b>: price of the item to sell.</li>
+              <li><b>payment_url</b>: url that will be called by BitcoinExpress library in order for merchants to accept the payment and collect the coins of the transaction.</li>
+              <li><b>email</b>: an object with the key 'email' - address of the merchant, the key 'receipt' - in order to send/not send the receipt of the transaction to the user and the key 'refund' -  in order to allow refunds.</li>
+              <li><b>memo</b>: text info regarding the product the in</li>
+              <li><b>issuers</b>: the list of issuers that the merchant will accept to be the payment done.</li>
+            </ul>
           </p>
           <p class="product__text">
-<pre><code class="javascript">
-document.getElementById("open_wallet_retracted_button").addEventListener('click', function () {
-  BitcoinExpress.Wallet.Open({
-    fullScreen: false
-  });
-});
-
-</code></pre>
+            The call to <i>PaymentRequest</i> will return a promise that resolves (if the payment is satisfactory) with a response that contains the <i>return_url</i> of the object the user bought (it can be a link or another thing like an encoded image, raw data etc.) inside the payment acknowledge.
           </p>
-          <br />
-        </div>
-
-        <div class="product__info">
-          <h3 style="text-align: center;">
-            Mock payment 0.0000095 XBT
-          </h3>
           <p class="product__text">
+            <small><b>NOTE</b>: the following example calls to the <i>/mockPayment</i> endpoint. This mock is provided so that developers can quickly test their payment script before they have a backend implementation in place.</small>
             <div id="mock_payment_button" class="slider__item-link">
-              Mock payment 0.0000095 XBT
+              Payment 0.0000095 XBT
             </div>
             <br />
           </p>
           <p class="product__text">
 <pre><code class="javascript">
-var req = {
-  fullScreen: false,
-  PaymentRequest: {
-    payment_details_version: "1",
-    PaymentDetails: {
-      amount: 0.0000095,
-      payment_url: "https://be.ap.rmp.net/Bitcoin-express/v1/issuer/mockPayment",
-      currency: "XBT",
-      issuers: ["*.rmp.net","coinbase.com"],
-      merchant_data: "9992645143674",
-      memo: "The art of asking",
-      email: {
-        contact: "sales@merchant.com",
-        receipt: true,
-        refund: false
-      },
-      time: "2017-06-01T00:00:00Z",
-      expires: "2017-12-31T00:00:00Z"
-    }
-  }
+var paymentDetails = {
+  amount: 0.0000095,
+  payment_url: "https://be.ap.rmp.net/Bitcoin-express/v1/issuer/mockPayment",
+  currency: "XBT",
+  issuers: ["*.rmp.net","coinbase.com"],
+  merchant_data: "9992645143674",
+  memo: "The art of asking",
+  email: {
+    contact: "sales@merchant.com",
+    receipt: true,
+    refund: false
+  },
 };
 
 document.getElementById("mock_payment_button").addEventListener('click', function () {
-  BitcoinExpress.Wallet.Open(req).then(function(container) {
-    // an object containing the PaymentAck
-    if ("PaymentAck" in container) {
-      let PaymentAck = container.PaymentAck;
-      if ("status" in PaymentAck) {
-        console.log("Status is "+PaymentAck.status);
-        if (PaymentAck.status == "ok" && "return_url" in PaymentAck) {
-          return window.location.replace(PaymentAck.return_url);
-        }
-      }
-    }
+  BitcoinExpress.Wallet.PaymentRequest(paymentDetails).then(function(container) {
+    window.location.replace(container.PaymentAck.return_url);
   }).catch(function(err) {
-    console.log("PaymentRequest returned ", err);
+    console.log("PaymentRequest error returned ", err);
   });
 });
 
@@ -176,30 +158,24 @@ document.getElementById("open_wallet_retracted_button").addEventListener('click'
   });
 });
 
-var req = {
-  fullScreen: false,
-  PaymentRequest: {
-    payment_details_version: "1",
-    PaymentDetails: {
-      amount: 0.0000095,
-      payment_url: "https://be.ap.rmp.net/Bitcoin-express/v1/issuer/mockPayment",
-      currency: "XBT",
-      issuers: ["*.rmp.net","coinbase.com"],
-      merchant_data: "9992645143674",
-      memo: "The art of asking",
-      email: {
-        contact: "sales@merchant.com",
-        receipt: true,
-        refund: false
-      },
-      time: "2017-06-01T00:00:00Z",
-      expires: "2017-12-31T00:00:00Z"
-    }
-  }
+var paymentDetails = {
+  amount: 0.0000095,
+  payment_url: "https://be.ap.rmp.net/Bitcoin-express/v1/issuer/mockPayment",
+  currency: "XBT",
+  issuers: ["*.rmp.net","coinbase.com"],
+  merchant_data: "9992645143674",
+  memo: "The art of asking",
+  email: {
+    contact: "sales@merchant.com",
+    receipt: true,
+    refund: false
+  },
+  time: "2017-06-01T00:00:00Z",
+  expires: "2017-12-31T00:00:00Z"
 };
 
 document.getElementById("mock_payment_button").addEventListener('click', function () {
-  BitcoinExpress.Wallet.Open(req).then(function(container) {
+  BitcoinExpress.Wallet.PaymentRequest(paymentDetails).then(function(container) {
     // an object containing the PaymentAck
     if ("PaymentAck" in container) {
       let PaymentAck = container.PaymentAck;
