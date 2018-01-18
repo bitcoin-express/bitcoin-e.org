@@ -829,3 +829,7 @@ body {
     display: none;
   }
 }
+
+pre {
+  overflow-x: scroll;
+}
