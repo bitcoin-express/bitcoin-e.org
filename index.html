@@ -17,6 +17,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 
     <link rel="stylesheet" href="static/css/screen.min.css">
+    <link rel="stylesheet" href="static/css/micromodal.css">
     <script type="text/javascript" src="wallet/js/vendor/jQuery-v3.1.1.js"></script>
     <script type="text/javascript" src="wallet/js/vendor/BitcoinExpress.min.js"></script>
   </head>
@@ -37,13 +38,13 @@
             <a class="page-nav__link is-highlighted" href="#">
               Home
             </a>
-            <a class="page-nav__link" href="pages/getting_started.html">
-              Getting started
+            <a class="page-nav__link" href="pages/for_sellers.html">
+              For sellers
             </a>
             <a class="page-nav__link" href="pages/demo.html">
               Demo
             </a>
-            <a class="page-nav__link" href="#">Contacts</a>
+            <a class="page-nav__link" href="pages/contact.html">Contacts</a>
           </nav>
         </div>
       </div>
@@ -66,10 +67,17 @@
                 <figcaption>Save money and time with the Bitcoin-express Wallet</figcaption>
               </figure>
               <div class="slider__item-info">
-                <h1 class="slider__item-title">Save money and time with the Bitcoin-express Wallet</h1>
-                <h2 class="slider__item-text">Transactions complete in seconds</h2>
-                <h2 class="slider__item-text">Transfer Bitcoin to friends with zero cost</h2>
-                <div id="open_wallet1" class="slider__item-link">Open your wallet</div>
+                <h1 class="slider__item-title">
+                  <br />Everyday payments,<br/>
+                  exchange and<br/>
+                  funds transfer<br/>
+                  for cryptocurrencies.
+                </h1>
+                <div id="open_wallet1" class="slider__item-link">
+                  Start free Wallet now
+                </div>
+                <br />
+                <h2 class="slider__item-text">No signout or download required</h2>
               </div>
             </li>
             <li class="slider__item" id="slide-two">
@@ -80,7 +88,9 @@
                 <h1 class="slider__item-title">Pay only a few cents in fees</h1>
                 <h2 class="slider__item-text">Buyer pays a few cents and</h2>
                 <h2 class="slider__item-text">seller pays only 0.5%</h2>
-                <div id="open_wallet2" class="slider__item-link">Open your wallet</div>
+                <div id="open_wallet2" class="slider__item-link">
+                  Start free Wallet now
+                </div>
               </div>
             </li>
             <li class="slider__item" id="slide-three">
@@ -91,7 +101,9 @@
                 <h1 class="slider__item-title">Manage funds on your phone and computer</h1>
                 <h2 class="slider__item-text">Use any existing Bitcoin wallet</h2>
                 <h2 class="slider__item-text">to transfer funds to Bitcoin-express</h2>
-                <div id="open_wallet3" class="slider__item-link">Open your wallet</div>
+                <div id="open_wallet3" class="slider__item-link">
+                  Start free Wallet now
+                </div>
               </div>
             </li>
           </ul>
@@ -99,49 +111,101 @@
       </div>
     </section>
 
+    <!--section>
+      <script src="https://fast.wistia.com/embed/medias/tyy0x8169u.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_tyy0x8169u videoFoam=true" style="height:100%;width:100%"> </div></div></div>
+    </section-->
+
+
+  <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <header class="modal__header">
+          <h2 class="modal__title" id="modal-1-title">
+            Introductory video
+          </h2>
+          <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+        </header>
+        <main class="modal__content" id="modal-1-content">
+        <script src="https://fast.wistia.com/embed/medias/tyy0x8169u.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_tyy0x8169u videoFoam=true" style="height:100%;width:100%"> </div></div></div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal micromodal-slide" id="modal-2" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <header class="modal__header">
+          <h2 class="modal__title" id="modal-1-title">
+            System overview
+          </h2>
+          <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+        </header>
+        <main class="modal__content" id="modal-1-content">
+          <iframe src="" style="width: 100%; min-width: 650px; min-height: 450px;"></iframe>
+        </main>
+      </div>
+    </div>
+  </div>
+
+    <div class="flex-container">
+      <div id="intro_video" style="cursor: pointer">
+        <div style="margin-bottom: 15px">
+          Introductory video
+        </div>
+        <img src="static/images/home/video.png" style="width: 120px" />
+      </div>
+      <div id="system-overview" style="cursor: pointer">
+        <div style="margin-bottom: 15px">
+          System overview
+        </div>
+        <img src="static/images/home/system_overview.png" style="width: 120px" />
+      </div>
+      <div id="self-managed-funds" style="cursor: pointer">
+        <div style="margin-bottom: 15px">
+          Self managed funds
+        </div>
+        <img src="static/images/home/self_managed_funds.png" style="width: 120px" />
+      </div>
+      <div id="open-protocols" style="cursor: pointer">
+        <div style="margin-bottom: 15px">
+          Open protocols
+        </div>
+        <img src="static/images/home/open_protocols.png" style="width: 120px" />
+      </div>
+      <div id="decentralized-ownership" style="cursor: pointer">
+        <div style="margin-bottom: 15px">
+          Decentralized ownership
+        </div>
+        <img src="static/images/home/decentralized_ownership.png" style="width: 120px" />
+      </div>
+      <div id="document-repository" style="cursor: pointer">
+        <div style="margin-bottom: 15px">
+          Document repository
+        </div>
+        <img src="static/images/home/document_repository.png" style="width: 120px" />
+      </div>
+    </div>
+
+    <hr />
+
     <!-- $Services-->
-    <section class="services">
+    <section class="services" style="z-index: -1">
       <div class="services__inner">
         <div class="services__item services__item_info">
-          <div class="service_icon">
-            <i class="fab fa-bitcoin fa-6x"></i>
-          </div>
-          <h3 class="service__title">Pay only a few cents in fees</h3>
-          <p class="service__text">Buyer pays a few cents and seller pays only 0.5%</p>
+          <img src="static/images/home/payments.png" style="width: 174px" />
+          <h3 class="service__title">payments</h3>
         </div>
         <div class="services__item services__item_proposal">
-          <div class="service_icon">
-            <i class="far fa-clock fa-6x"></i>
-          </div>
-          <h3 class="service__title">Save money and time</h3>
-          <p class="service__text">Transactions complete in seconds.<br>Transfer to friends with zero cost</p>
+          <img src="static/images/home/exchange.png" style="width: 174px" />
+          <h3 class="service__title">exchange</h3>
         </div>
         <div class="services__item services__item_production">
-          <div class="service_icon">
-            <span class="fa-stack fa-3x">
-              <i class="fas fa-download fa-stack-1x"></i>
-              <i class="fas fa-ban fa-stack-2x" style="color: red"></i>
-            </span>
-          </div>
-          <h3 class="service__title">No sign-up, No download</h3>
-          <p class="service__text">Use any browser instantly.<br>Hold your own funds</p>
+          <img src="static/images/home/transfer_via_email.png" style="width: 174px" />
+          <h3 class="service__title">transfer</h3>
         </div>
       </div>
     </section>
-
-    <!-- $Product-->
-    <!-- section class="product">
-      <div class="product__inner">
-        <h1 class="product__title">Click the Shopping cart to test payment</h1>
-        <a class="product__card" href="javascript:startPayment(0.0000123)">
-          Click to test payment
-        </a>
-        <div class="product__info">
-          <h2 class="product__slogan">Some Bullet text here</h2>
-          <p class="product__text">Lorem Ipsum is simply dummy text of the printing and typesetting<br>Lorem Ipsum has been the industry&apos;s standard dummy text ever<br>When an unknown printer took a galley of type and scrambled<br>It to make a type specimen book. It has survived not only five centuries<br>But also the leap into electronic typesetting<br>Remaining essentially unchanged. It was popularised<br>The release of Letraset sheets containing Lorem Ipsum passages</p>
-        </div>
-      </div>
-    </section-->
 
     <!-- $Page footer-->
     <footer class="page-footer">
@@ -160,6 +224,8 @@
         </p>
       </div>
     </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
 
 <script  defer="defer" type="text/javascript">
 
@@ -222,6 +288,32 @@ function startPayment (price) {
 document.getElementById("open_wallet1").addEventListener('click', showWallet);
 document.getElementById("open_wallet2").addEventListener('click', showWallet);
 document.getElementById("open_wallet3").addEventListener('click', showWallet);
+
+MicroModal.init();
+
+document.getElementById("intro_video").addEventListener('click', function() {
+  MicroModal.show("modal-1");
+});
+
+document.getElementById("system-overview").addEventListener('click', function() {
+  window.location = "https://bitcoin-express.info/overview/";
+});
+
+document.getElementById("self-managed-funds").addEventListener('click', function() {
+  window.location = "https://bitcoin-express.info/funds/";
+});
+
+document.getElementById("open-protocols").addEventListener('click', function() {
+  window.location = "https://bitcoin-express.info/protocols/";
+});
+
+document.getElementById("decentralized-ownership").addEventListener('click', function() {
+  window.location = "https://bitcoin-express.info/decentralised/";
+});
+
+document.getElementById("document-repository").addEventListener('click', function() {
+  window.location = "https://bitcoin-express.info/";
+});
 </script>
 
   </body>

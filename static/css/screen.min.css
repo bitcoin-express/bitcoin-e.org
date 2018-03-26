@@ -132,6 +132,20 @@ input[type=submit] {
   cursor: pointer;
 }
 
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 25px 0;
+}
+
+.flex-container > div {
+  width: 120px;
+  margin: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
 h1 {
   font-weight: lighter;
 }
@@ -200,11 +214,11 @@ body {
   content: "";
   background-image: url('../images/Bitcoin-express.png');
   display: inline-block;
-  background-size: 30px 30px;
-  width: 30px;
-  height: 30px;
+  background-size: 60px 60px;
+  width: 60px;
+  height: 60px;
   margin-left: 10px;
-  padding-top: 5px;
+  margin-top: -15px;
   font-family: serif;
   font-size: 65px;
   color: #fff;
@@ -461,7 +475,7 @@ body {
   position: absolute;
   bottom: 20px;
   left: 50%;
-  z-index: 100;
+  z-index: 0;
   width: 13px;
   height: 13px;
   background-color: rgba(255, 255, 255, 0.8);
@@ -574,9 +588,9 @@ body {
 }
 
 .slider__item-link {
-  /*display: inline-block;*/
   white-space: nowrap;
-  margin: 35px 0 0 10px;
+  font-size: 30px;
+  margin: 5px 20px 0 10px;
   border-radius: 5px;
   padding: 8px 10px;
   background-color: #5094f2;
@@ -585,21 +599,6 @@ body {
   -webkit-transition: all .5s;
   transition: all .5s;
   cursor: pointer;
-}
-
-.slider__item-link:before {
-  content: "\2714";
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-  background-color: #fff;
-  -webkit-border-radius: 50px;
-  border-radius: 50px;
-  color: #5094f2;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 1;
 }
 
 .slider__item-link:hover {
@@ -776,8 +775,7 @@ body {
 
   .slider__item-title {
     margin-bottom: 10px;
-    font-size: 25px;
-    max-height: 65px;
+    font-size: 18px;
     overflow: hidden;
   }
 
