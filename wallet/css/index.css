@@ -104,7 +104,7 @@ body {
 }
 
 .appbar.minimized {
-  padding: 0 0 0 5px !important;
+  padding: 0 10px 0 5px !important;
 }
 
 /* MEDIA QUERIES */
@@ -116,6 +116,10 @@ body {
   }
 }
 
+.tabLabel {
+  font-size: 18px !important;
+}
+
 @media screen and (max-width: 350px) {
   .hide-mini {
     display: none !important;
@@ -125,6 +129,9 @@ body {
   }
   .purchase-item-list > div > div {
     padding: 20px 56px 20px 20px !important;
+  }
+  .tabLabel {
+    font-size: 15px !important;
   }
 }
 
@@ -200,12 +207,12 @@ body {
     padding: 10px;
   }
   .mainsection1 {
-    width: calc(50% - 40px);
+    width: calc(50% - 20px);
     min-width: 230px;
     margin: 40px 30px 60px 0;
   }
   .mainsection2 {
-    width: calc(50% - 30px);
+    width: calc(50% - 10px);
     min-width: 230px;
     margin: 40px 0 60px 0;
   }
@@ -232,7 +239,7 @@ body {
 @media screen and (min-width: 850px) and (min-device-width: 850px) {
   .addFundsGrid {
     display: grid;
-    grid-template-columns: calc(100% - 190px) 180px;
+    grid-template-columns: calc(100% - 290px) 280px;
     grid-template-areas: "info qr";
     grid-gap: 10px;
   }
@@ -289,7 +296,7 @@ body {
     padding: 0 calc(5vw + 24px) !important;
   }
   .desktop .appbar.bottom {
-    padding: 0 24px 0 0 !important;
+    padding: 0 calc(5vw + 24px) 0 0 !important;
   }
   .desktop .tabsbar > div {
     padding: 0 5vw;
@@ -308,7 +315,7 @@ body {
     padding: 0 calc(15vw + 24px) !important;
   }
   .desktop .appbar.bottom {
-    padding: 0 24px 0 0 !important;
+    padding: 0 calc(15vw + 24px) 0 0 !important;
   }
   .desktop .tabsbar > div {
     padding: 0 15vw;
@@ -327,7 +334,7 @@ body {
     padding: 0 calc(20vw + 24px) !important;
   }
   .desktop .appbar.bottom {
-    padding: 0 24px 0 0 !important;
+    padding: 0 calc(15vw + 24px) 0 0 !important;
   }
   .desktop .tabsbar > div {
     padding: 0 20vw;

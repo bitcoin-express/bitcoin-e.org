@@ -18,8 +18,8 @@
 
     <link rel="stylesheet" href="static/css/screen.min.css">
     <link rel="stylesheet" href="static/css/micromodal.css">
-    <script type="text/javascript" src="wallet/js/vendor/jQuery-v3.1.1.js"></script>
-    <script type="text/javascript" src="wallet/js/vendor/BitcoinExpress.min.js"></script>
+    <script type="text/javascript" src="static/js/jQuery-v3.1.1.js"></script>
+    <script type="text/javascript" src="static/js/BitcoinExpress.min.js"></script>
   </head>
   <body>
     <!-- $Page header-->
@@ -76,8 +76,10 @@
                 <div id="open_wallet1" class="slider__item-link">
                   Start free Wallet now
                 </div>
-                <br />
-                <h2 class="slider__item-text">No signout or download required</h2>
+                <h2 class="slider__item-text">No signup or download required</h2>
+                <h3 id="see_video">
+                  See video
+                </h3>
               </div>
             </li>
             <li class="slider__item" id="slide-two">
@@ -85,9 +87,15 @@
                 <figcaption>Pay only a few cents in fees</figcaption>
               </figure>
               <div class="slider__item-info">
-                <h1 class="slider__item-title">Pay only a few cents in fees</h1>
-                <h2 class="slider__item-text">Buyer pays a few cents and</h2>
-                <h2 class="slider__item-text">seller pays only 0.5%</h2>
+                <h1 class="slider__item-title">
+                  <br />Pay only a few cents<br/>
+                  in fees.<br/>
+                </h1>
+                <h2 class="slider__item-text">
+                  Buyer pays a few cents and<br/>
+                  seller pays only 0.5%
+                </h2>
+                <br/>
                 <div id="open_wallet2" class="slider__item-link">
                   Start free Wallet now
                 </div>
@@ -98,9 +106,14 @@
                 <figcaption>Improve your Bitcoin payment experience</figcaption>
               </figure>
               <div class="slider__item-info">
-                <h1 class="slider__item-title">Manage funds on your phone and computer</h1>
-                <h2 class="slider__item-text">Use any existing Bitcoin wallet</h2>
-                <h2 class="slider__item-text">to transfer funds to Bitcoin-express</h2>
+                <h1 class="slider__item-title">
+                  <br />Manage funds on your phone and computer.
+                </h1>
+                <h2 class="slider__item-text">
+                  Use any existing Bitcoin wallet to<br/>
+                  transfer funds to Bitcoin-express.
+                </h2>
+                <br/>
                 <div id="open_wallet3" class="slider__item-link">
                   Start free Wallet now
                 </div>
@@ -136,13 +149,10 @@
     <div class="modal__overlay" tabindex="-1" data-micromodal-close>
       <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
         <header class="modal__header">
-          <h2 class="modal__title" id="modal-1-title">
-            System overview
-          </h2>
           <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
         </header>
-        <main class="modal__content" id="modal-1-content">
-          <iframe src="" style="width: 100%; min-width: 650px; min-height: 450px;"></iframe>
+        <main class="modal__content" id="modal-1-content" style="text-align: center;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/m1wVOmVvUvE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </main>
       </div>
     </div>
@@ -193,16 +203,22 @@
     <section class="services" style="z-index: -1">
       <div class="services__inner">
         <div class="services__item services__item_info">
-          <img src="static/images/home/payments.png" style="width: 174px" />
-          <h3 class="service__title">payments</h3>
+          <a href="http://bitcoin-express.info/payments">
+            <img src="static/images/home/payments.png" style="width: 174px" />
+            <h3 class="service__title">payments</h3>
+          </a>
         </div>
         <div class="services__item services__item_proposal">
-          <img src="static/images/home/exchange.png" style="width: 174px" />
-          <h3 class="service__title">exchange</h3>
+          <a href="http://bitcoin-express.info/exchange">
+            <img src="static/images/home/exchange.png" style="width: 174px" />
+            <h3 class="service__title">exchange</h3>
+          </a>
         </div>
         <div class="services__item services__item_production">
-          <img src="static/images/home/transfer_via_email.png" style="width: 174px" />
-          <h3 class="service__title">transfer</h3>
+          <a href="http://bitcoin-express.info/transfers">
+            <img src="static/images/home/transfer_via_email.png" style="width: 174px" />
+            <h3 class="service__title">transfer</h3>
+            </a>
         </div>
       </div>
     </section>
@@ -218,7 +234,7 @@
           Check out our <a href="https://github.com/bitcoin-express" target="_blank">
             <i class="fab fa-github"></i> Github.
           </a>
-          Or go an take a look to our <a href="https://github.com/bitcoin-express/bitcoin-express-wallet/issues" target="_blank">
+          Or go an take a look to our <a href="https://github.com/bitcoin-express/wallet/issues" target="_blank">
             current issues
           </a>.
         </p>
@@ -293,6 +309,9 @@ MicroModal.init();
 
 document.getElementById("intro_video").addEventListener('click', function() {
   MicroModal.show("modal-1");
+});
+document.getElementById("see_video").addEventListener('click', function() {
+  MicroModal.show("modal-2");
 });
 
 document.getElementById("system-overview").addEventListener('click', function() {

@@ -605,6 +605,12 @@ body {
   background-color: #2177ee;
 }
 
+#see_video {
+  text-align: center;
+  color: #f8931a;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 800px) {
 
   .page-header {
@@ -795,6 +801,9 @@ body {
     height: 13px;
   }
 
+  #see_video {
+    font-size: 15px;
+  }
 }
 
 @media screen and (max-width: 510px) {

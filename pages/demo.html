@@ -17,8 +17,8 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 
     <link rel="stylesheet" href="../static/css/screen.min.css">
-    <script type="text/javascript" src="../wallet/js/vendor/jQuery-v3.1.1.js"></script>
-    <script type="text/javascript" src="../wallet/js/vendor/BitcoinExpress.min.js"></script>
+    <script type="text/javascript" src="../static/js/jQuery-v3.1.1.js"></script>
+    <script type="text/javascript" src="../static/js/BitcoinExpress.min.js"></script>
   </head>
   <body>
     <!-- $Page header-->
@@ -54,62 +54,29 @@
     <!-- $Product-->
     <section class="product">
       <div class="product__inner">
-        <h1 class="product__title"></h1>
-        <!-- a class="product__card" href="javascript:startPayment(0.0000123)">
-          Click to test payment
-        </a -->
-
         <div class="product__info">
-          <h3 style="text-align: center;">
-            Open the wallet
-          </h3>
-          <hr />
           <p class="product__text">
-            Opening the wallet is as simple as calling the function <i>Open</i> from BitcoinExpress wallet.<br/>
-            By passing a JSON object as a parameter to the function you can decide if you want to open the wallet in full-size mode or in a retracted mode (<i>fullScren</i> true or false).
-            <div id="open_wallet_button" class="slider__item-link">
-              Open wallet full size
-            </div>
-            <div id="open_wallet_retracted_button" class="slider__item-link">
-              Open retracted wallet
-            </div>
+          A Merchant may request a payment by calling the function <i>PaymentRequest</i> supplied by the BitcoinExpress library. A <i>PaymentDetails</i> JSON parameter determines the payment details.<br/>
             <br />
-          </p>
-          <p class="product__text">
-<pre><code class="javascript">
-document.getElementById("open_wallet_button").addEventListener('click', function () {
-  BitcoinExpress.Wallet.Open({
-    fullScreen: true
-  });
-});
-
-</code></pre>
-          </p>
-          <br />
-        </div>
-
-        <div class="product__info">
-          <h3 style="text-align: center;">
-            Payment
-          </h3>
-          <hr />
-          <p class="product__text">
-            In order to proceed with payments, merchants will have to call the function <i>PaymentRequest</i> from BitcoinExpress library passing as a parameter a JSON object with the payment details.<br/>
-            Principally, the payment details object will have to include the following keys:<br/>
+            The payment details object must include at least the following keys:<br/>
             <ul>
-              <li><b>amount</b>: price of the item to sell.</li>
-              <li><b>payment_url</b>: url that will be called by BitcoinExpress library in order for merchants to accept the payment and collect the coins of the transaction.</li>
-              <li><b>email</b>: an object with the key 'email' - address of the merchant, the key 'receipt' - in order to send/not send the receipt of the transaction to the user and the key 'refund' -  in order to allow refunds.</li>
-              <li><b>memo</b>: text info regarding the product the in</li>
-              <li><b>issuers</b>: the list of issuers that the merchant will accept to be the payment done.</li>
+              <li><b>currency</b>: the currency of the payment.</li>
+              <li><b>amount</b>: price of the item to sold.</li>
+              <li><b>memo</b>: a short description of the product being sold.</li>
+              <li><b>issuers</b>: the list of Issuer domains whose Coins the merchant is willing to accept.</li>
+              <li><b>merchant_data</b>: a reference created and used exclusively by the Merchant to track this payment.</li>
+              <li><b>payment_url</b>: the location where the Merchant wishes to receive the <i>Payment</i> object containing Coins. When Coins are received, they should be verified at the Merchant's Home Issuer and a <i>PaymentAck</i> returned.</li>
             </ul>
           </p>
           <p class="product__text">
-            The call to <i>PaymentRequest</i> will return a promise that resolves (if the payment is satisfactory) with a response that contains the <i>return_url</i> of the object the user bought (it can be a link or another thing like an encoded image, raw data etc.) inside the payment acknowledge.
+            If the payment Coins are acceptable, the <i>PaymentRequest</i> resolves to a <i>PaymentAck</i>, otherwise it is rejected with an error string. The sales page may then use data from the <i>PaymentAck</i> to determine an appropriate next step (e.g. say thank you or link to a new page).
+            <br />
+            <br />
           </p>
           <p class="product__text">
-            <small><b>NOTE</b>: the following example calls to the <i>/mockPayment</i> endpoint. This mock is provided so that developers can quickly test their payment script before they have a backend implementation in place.</small>
-            <div id="mock_payment_button" class="slider__item-link">
+            <b>NOTE</b>: the following example calls the <i>/mockPayment</i> Issuer endpoint. This function is provided so that developers may quickly test their payment script before they have a back-end implementation in place.<br />
+            <br />
+            <div id="mock_payment_button" style="text-align: center; cursor: pointer; padding: 10px; background: #5094f2; color: white; border-radius: 10px;">
               Payment 0.0000095 XBT
             </div>
             <br />
@@ -117,17 +84,18 @@ document.getElementById("open_wallet_button").addEventListener('click', function
           <p class="product__text">
 <pre><code class="javascript">
 var paymentDetails = {
-  amount: 0.0000095,
-  payment_url: "https://be.ap.rmp.net/Bitcoin-express/v1/issuer/mockPayment",
   currency: "XBT",
-  issuers: ["*.rmp.net","coinbase.com"],
-  merchant_data: "9992645143674",
+  amount: 0.0000095,
   memo: "The art of asking",
+  issuers: ["(*.carrotpay.com)"],
+  merchant_data: "sale999264",
   email: {
     contact: "sales@merchant.com",
     receipt: true,
     refund: false
   },
+  payment_url: "https://eu.carrotpay.com/Bitcoin-express/v1/issuer/mockPayment",
+  time: "2017-06-01T00:00:00Z"
 };
 
 document.getElementById("mock_payment_button").addEventListener('click', function () {
@@ -146,50 +114,67 @@ document.getElementById("mock_payment_button").addEventListener('click', functio
 
 
 <script defer="defer" type="text/javascript">
-document.getElementById("open_wallet_button").addEventListener('click', function () {
-  BitcoinExpress.Wallet.Open({
-    fullScreen: true
-  });
-});
+  var merchantServer = "http://mg.bitcoin-express.labs.softwarecraftsmanship.pl";
+  var authToken = "1p2o3i4u5y6t7r8e9w0q";
 
-document.getElementById("open_wallet_retracted_button").addEventListener('click', function () {
-  BitcoinExpress.Wallet.Open({
-    fullScreen: false
-  });
-});
+  var transactionRequest = {
+    type: "payment",
+    order_id: "FAKEPAYMENT",
+    value: 0.0000095,
+    currency: "XBT",
+    description: "testing payment",
+    notification: "Thank you for your testing bitcoin-e payments!",
+    return_url: "http://amandapalmer.net/wp-content/themes/afp/art-of-asking/images/hero_mask.png",
+    callback_url: "http://amandapalmer.net/wp-content/themes/afp/art-of-asking/images/hero_mask.png",
+    acceptable_issuers: ["be.ap.rmp.net", "(eu.carrotpay.com)"],
+    policies: {
+      "receipt_via_email": false,
+      "refund_via_email": true
+    },
+    expires: 300,
+  };
 
-var paymentDetails = {
-  amount: 0.0000095,
-  payment_url: "https://be.ap.rmp.net/Bitcoin-express/v1/issuer/mockPayment",
-  currency: "XBT",
-  issuers: ["*.rmp.net","coinbase.com"],
-  merchant_data: "9992645143674",
-  memo: "The art of asking",
-  email: {
-    contact: "sales@merchant.com",
-    receipt: true,
-    refund: false
-  },
-  time: "2017-06-01T00:00:00Z",
-  expires: "2017-12-31T00:00:00Z"
-};
+  function startPayment (req) {
+    console.log("startPayment", req);
 
-document.getElementById("mock_payment_button").addEventListener('click', function () {
-  BitcoinExpress.Wallet.PaymentRequest(paymentDetails).then(function(container) {
-    // an object containing the PaymentAck
-    if ("PaymentAck" in container) {
-      let PaymentAck = container.PaymentAck;
-      if ("status" in PaymentAck) {
+    var processPayment = function(resp) {
+      const PaymentAck = resp.PaymentAck;
+      if (PaymentAck && "status" in PaymentAck) {
         console.log("Status is "+PaymentAck.status);
-        if (PaymentAck.status == "ok" && "return_url" in PaymentAck) {
-          return window.location.replace(PaymentAck.return_url);
+        if (PaymentAck.status == "ok" && "callback_url" in PaymentAck) {
+          return window.location.replace(PaymentAck.callback_url);
         }
       }
+    };
+
+    var handleError = function(err) {
+      console.log("PaymentRequest returned ", err);
+    };
+
+    BitcoinExpress.Wallet.Open(req)
+      .then(processPayment)
+      .catch(handleError);
+  };
+
+  document.getElementById("mock_payment_button").addEventListener('click', function () {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+      if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+        startPayment({
+          fullScreen: false,
+          PaymentRequest: {
+            payment_details_version: "1",
+            PaymentDetails: JSON.parse(xmlHttp.responseText)
+          }
+        });
+      }
     }
-  }).catch(function(err) {
-    console.log("PaymentRequest returned ", err);
+    xmlHttp.open("POST", merchantServer + "/transactions", true); // true for asynchronous
+    xmlHttp.setRequestHeader('Content-type', 'application/json');
+    xmlHttp.setRequestHeader('Authorization', authToken);
+    xmlHttp.send(JSON.stringify(transactionRequest));
   });
-});
+
 </script>
 
 
@@ -207,7 +192,7 @@ document.getElementById("mock_payment_button").addEventListener('click', functio
           Check out our <a href="https://github.com/bitcoin-express" target="_blank">
             <i class="fab fa-github"></i> Github.
           </a>
-          Or go an take a look to our <a href="https://github.com/bitcoin-express/bitcoin-express-wallet/issues" target="_blank">
+          Or go an take a look to our <a href="https://github.com/bitcoin-express/wallet/issues" target="_blank">
             current issues
           </a>.
         </p>
